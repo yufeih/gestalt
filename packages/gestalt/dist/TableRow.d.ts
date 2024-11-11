@@ -12,11 +12,12 @@ type Props = {
      * Indicates if Table.Row is currently selected or unselected. See the [selected and hovered state variant](https://gestalt.pinterest.systems/web/table#Selected-and-hovered-state) to learn more.
      */
     selected?: 'selected' | 'unselected';
+    onClick?: React.MouseEventHandler<HTMLTableRowElement>;
 };
 /**
  * Use [Table.Row](https://gestalt.pinterest.systems/web/table#Table.Row) to define a row in Table.
  */
-declare function TableRow({ children, hoverStyle, selected }: Props): import("react/jsx-runtime").JSX.Element;
+declare function TableRow({ children, hoverStyle, selected, onClick }: Props): import("react/jsx-runtime").JSX.Element;
 declare namespace TableRow {
     var displayName: string;
 }

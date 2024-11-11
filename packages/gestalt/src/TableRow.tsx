@@ -16,12 +16,13 @@ type Props = {
    * Indicates if Table.Row is currently selected or unselected. See the [selected and hovered state variant](https://gestalt.pinterest.systems/web/table#Selected-and-hovered-state) to learn more.
    */
   selected?: 'selected' | 'unselected';
+  onClick?: React.MouseEventHandler<HTMLTableRowElement>;
 };
 
 /**
  * Use [Table.Row](https://gestalt.pinterest.systems/web/table#Table.Row) to define a row in Table.
  */
-export default function TableRow({ children, hoverStyle = 'none', selected }: Props) {
+export default function TableRow({ children, hoverStyle = 'none', selected, onClick }: Props) {
   const { stickyColumns } = useTableContext();
   const rowRef = useRef<HTMLTableRowElement | null | undefined>();
   const [columnWidths, setColumnWidths] = useState<ReadonlyArray<number>>([]);
@@ -55,8 +56,13 @@ export default function TableRow({ children, hoverStyle = 'none', selected }: Pr
   });
 
   return (
-    // @ts-expect-error - TS2322 - Type 'MutableRefObject<HTMLTableRowElement | null | undefined>' is not assignable to type 'LegacyRef<HTMLTableRowElement> | undefined'.
-    <tr ref={rowRef} className={rowStyle}>
+    <tr
+      // @ts-expect-error - TS2322 - Type 'MutableRefObject<HTMLTableRowElement | null | undefined>' is not assignable to type 'LegacyRef<HTMLTableRowElement> | undefined'.
+      ref={rowRef}
+      className={rowStyle}
+      onClick={onClick}
+      style={onClick ? { cursor: 'pointer' } : undefined}
+    >
       {Number(stickyColumns) > 0 ? Children.map(children, renderCellWithIndex) : children}
     </tr>
   );

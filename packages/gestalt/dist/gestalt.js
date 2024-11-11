@@ -20527,7 +20527,7 @@ ${themeToStyles(theme, isInExperiment, languageLineHeight)} }`,
 	/**
 	 * Use [Table.Row](https://gestalt.pinterest.systems/web/table#Table.Row) to define a row in Table.
 	 */
-	function TableRow({ children, hoverStyle = 'none', selected }) {
+	function TableRow({ children, hoverStyle = 'none', selected, onClick }) {
 	    const { stickyColumns } = useTableContext();
 	    const rowRef = React.useRef();
 	    const [columnWidths, setColumnWidths] = React.useState([]);
@@ -20555,9 +20555,9 @@ ${themeToStyles(theme, isInExperiment, languageLineHeight)} }`,
 	        [styles$b.selected]: selected === 'selected',
 	        [styles$b.unselected]: selected === 'unselected',
 	    });
-	    return (
-	    // @ts-expect-error - TS2322 - Type 'MutableRefObject<HTMLTableRowElement | null | undefined>' is not assignable to type 'LegacyRef<HTMLTableRowElement> | undefined'.
-	    jsxRuntime.jsx("tr", { ref: rowRef, className: rowStyle, children: Number(stickyColumns) > 0 ? React.Children.map(children, renderCellWithIndex) : children }));
+	    return (jsxRuntime.jsx("tr", { 
+	        // @ts-expect-error - TS2322 - Type 'MutableRefObject<HTMLTableRowElement | null | undefined>' is not assignable to type 'LegacyRef<HTMLTableRowElement> | undefined'.
+	        ref: rowRef, className: rowStyle, onClick: onClick, style: onClick ? { cursor: 'pointer' } : undefined, children: Number(stickyColumns) > 0 ? React.Children.map(children, renderCellWithIndex) : children }));
 	}
 	TableRow.displayName = 'Table.Row';
 
