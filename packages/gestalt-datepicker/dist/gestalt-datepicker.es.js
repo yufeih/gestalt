@@ -34473,21 +34473,11 @@ function getPaddingObject(padding) {
 }
 
 function rectToClientRect(rect) {
-  const {
-    x,
-    y,
-    width,
-    height
-  } = rect;
-  return {
-    width,
-    height,
-    top: y,
-    left: x,
-    right: x + width,
-    bottom: y + height,
-    x,
-    y
+  return { ...rect,
+    top: rect.y,
+    left: rect.x,
+    right: rect.x + rect.width,
+    bottom: rect.y + rect.height
   };
 }
 
@@ -34808,7 +34798,7 @@ const DateInputWithForwardRef = forwardRef(function DateInput({ disabled, id, la
                         onPassthroughFocus === null || onPassthroughFocus === void 0 ? void 0 : onPassthroughFocus();
                         onFocus === null || onFocus === void 0 ? void 0 : onFocus(data.event);
                         onClick === null || onClick === void 0 ? void 0 : onClick();
-                    }, onKeyDown: (data) => onKeyDown === null || onKeyDown === void 0 ? void 0 : onKeyDown(data.event), placeholder: placeholder, readOnly: readOnly, size: "lg", value: value }) }), jsxRuntime.jsx("div", { className: styles.calendarIcon, children: jsxRuntime.jsx(Box, { alignItems: "center", display: "flex", marginEnd: 5, minHeight: 48, position: "relative", children: jsxRuntime.jsx(TapArea, { fullHeight: false, fullWidth: false, mouseCursor: "default", onTap: () => {
+                    }, onKeyDown: (data) => onKeyDown === null || onKeyDown === void 0 ? void 0 : onKeyDown(data.event), placeholder: placeholder, readOnly: readOnly, size: size, value: value }) }), jsxRuntime.jsx("div", { className: styles.calendarIcon, children: jsxRuntime.jsx(Box, { alignItems: "center", display: "flex", marginEnd: 5, minHeight: 48, position: "relative", children: jsxRuntime.jsx(TapArea, { fullHeight: false, fullWidth: false, mouseCursor: "default", onTap: () => {
                             var _a;
                             (_a = innerRef.current) === null || _a === void 0 ? void 0 : _a.focus();
                         }, rounding: "circle", tabIndex: -1, children: jsxRuntime.jsx(Icon, { accessibilityLabel: openCalendar, color: disabled ? 'disabled' : 'default', icon: "calendar" }) }) }) })] }));

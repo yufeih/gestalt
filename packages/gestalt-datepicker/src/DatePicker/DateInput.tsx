@@ -122,7 +122,7 @@ const DateInputWithForwardRef = forwardRef<HTMLInputElement, Props>(function Dat
           onKeyDown={(data) => onKeyDown?.(data.event)}
           placeholder={placeholder}
           readOnly={readOnly}
-          size="lg"
+          size={size}
           value={value}
         />
       </Box>
